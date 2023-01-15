@@ -1,0 +1,25 @@
+﻿@{
+    List<Producto> productos = ViewBag.Productos != null ? ViewBag.Productos : new List<Producto>();
+}
+
+@foreach (var item in productos)
+{
+    <button onclick="clickProduct('@item.producto')">@item.producto</button>
+}
+
+
+<div id="myDiv">
+       
+</div>
+
+<script>
+   function clickProduct(nombrep){
+        $.ajax({
+            url: 'http://localhost:59976/Productos/LoadPartialView',
+            type: 'POST',
+            success: function (result) {
+                $("#myDiv").html(result);
+            }
+        });
+   }
+</script>
